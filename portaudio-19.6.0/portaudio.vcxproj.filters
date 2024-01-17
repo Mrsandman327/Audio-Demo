@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{2948eeac-168e-4652-9287-012da8d796cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\hostapi">
+      <UniqueIdentifier>{41d72ea4-bfc1-4fa3-a976-ed9a7c1c4dd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\os">
+      <UniqueIdentifier>{160b2a2b-d8ab-4b1b-8146-7420f0f7c52b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\os\win">
+      <UniqueIdentifier>{51e2e16b-ddbe-45d8-a805-38e44f48054b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\hostapi\dsound">
+      <UniqueIdentifier>{3c291b82-245a-47f2-89ad-02bd1bd51088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\hostapi\wasapi">
+      <UniqueIdentifier>{0e93e004-50ac-4da4-89e6-ee04df073726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\hostapi\wdmks">
+      <UniqueIdentifier>{aedf7af8-3fc8-430f-8224-85d9868345d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\hostapi\wmme">
+      <UniqueIdentifier>{95367295-6798-438a-b5b7-8ff3d35d9eac}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="portaudio\common\pa_allocation.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_converters.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_cpuload.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_debugprint.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_dither.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_front.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_process.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_ringbuffer.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_stream.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\common\pa_trace.c">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\os\win\pa_win_coinitialize.c">
+      <Filter>源文件\os\win</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\os\win\pa_win_hostapis.c">
+      <Filter>源文件\os\win</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\os\win\pa_win_util.c">
+      <Filter>源文件\os\win</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\os\win\pa_win_waveformat.c">
+      <Filter>源文件\os\win</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\os\win\pa_win_wdmks_utils.c">
+      <Filter>源文件\os\win</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\os\win\pa_x86_plain_converters.c">
+      <Filter>源文件\os\win</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\hostapi\dsound\pa_win_ds.c">
+      <Filter>源文件\hostapi\dsound</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\hostapi\dsound\pa_win_ds_dynlink.c">
+      <Filter>源文件\hostapi\dsound</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\hostapi\wmme\pa_win_wmme.c">
+      <Filter>源文件\hostapi\wmme</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\hostapi\wdmks\pa_win_wdmks.c">
+      <Filter>源文件\hostapi\wdmks</Filter>
+    </ClCompile>
+    <ClCompile Include="portaudio\hostapi\wasapi\pa_win_wasapi.c">
+      <Filter>源文件\hostapi\wasapi</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="portaudio\common\pa_allocation.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_converters.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_cpuload.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_debugprint.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_dither.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_endianness.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_gitrevision.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_hostapi.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_memorybarrier.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_process.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_ringbuffer.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_stream.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_trace.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_types.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\common\pa_util.h">
+      <Filter>源文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\os\win\pa_win_coinitialize.h">
+      <Filter>源文件\os\win</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\os\win\pa_win_wdmks_utils.h">
+      <Filter>源文件\os\win</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\os\win\pa_x86_plain_converters.h">
+      <Filter>源文件\os\win</Filter>
+    </ClInclude>
+    <ClInclude Include="portaudio\hostapi\dsound\pa_win_ds_dynlink.h">
+      <Filter>源文件\hostapi\dsound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_asio.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_jack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_linux_alsa.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_mac_core.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_win_ds.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_win_wasapi.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_win_waveformat.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_win_wdmks.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pa_win_wmme.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\portaudio.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
