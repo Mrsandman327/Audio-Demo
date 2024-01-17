@@ -10,7 +10,7 @@ windows平台 visual studio 2015编译通过
 
 
 #### 文件说明
-demo :可执行程序，包括网络通信
+demo :可执行程序，基本的录音、播放、语音通话、MP3编解码、wav编解码（附带网络通信以及线程池）
 
 lame-3.100：LAME是遵循了GNU的MP3[编码器](https://so.csdn.net/so/search?q=编码器&spm=1001.2101.3001.7020)，编码高品质MP3的最好和唯一选择。
 
