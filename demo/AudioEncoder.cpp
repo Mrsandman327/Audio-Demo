@@ -1,7 +1,4 @@
 #include "AudioEncoder.h"
-#include <climits>
-#include <cfloat>
-#include <filesystem>
 
 CAudioEncoder::CAudioEncoder()
 	: _flags(nullptr)
