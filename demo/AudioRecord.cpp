@@ -16,13 +16,10 @@ static int inputCallback(const void* inputBuffer, void* outputBuffer,
 	CAudioRecord *pRecord = (CAudioRecord *)userData;
 	if (nullptr != pRecord) {
 #ifdef RECORD
-			if (nullptr != pRecord->_mp3encoder)
+			if (nullptr != pRecord->_audioencoder)
 			{
-				pRecord->_mp3encoder->Encoder((DATA_TYPE*)inputBuffer, framesPerBuffer);
-			}
-			if (nullptr != pRecord->_fwav)
-			{
-				fwrite((DATA_TYPE*)inputBuffer, SAMPLE_SIZE, framesPerBuffer, pRecord->_fwav);
+				pRecord->_audioencoder->Mp3Encoder((DATA_TYPE*)inputBuffer, framesPerBuffer);
+				pRecord->_audioencoder->WavEncoder((DATA_TYPE*)inputBuffer, framesPerBuffer);
 			}
 #endif
 			pRecord->SendStream(inputBuffer, framesPerBuffer);
@@ -37,8 +34,7 @@ CAudioRecord::CAudioRecord(CMSSocket *sub, int socket)
 	, _instream(nullptr)
 	, _outstream(nullptr)
 #ifdef RECORD
-	, _mp3encoder(nullptr)
-	, _fwav(nullptr)
+	, _audioencoder(nullptr)
 #endif
 {
 	_socket = sub;
@@ -46,7 +42,7 @@ CAudioRecord::CAudioRecord(CMSSocket *sub, int socket)
 	if(socket > 0)
 		_client.push_back(socket);
 #ifdef RECORD
-	_mp3encoder = new CMp3Encoder;
+	_audioencoder = new CAudioEncoder;
 #endif
 
 	OpenDefaultAudio();
@@ -57,10 +53,10 @@ CAudioRecord::~CAudioRecord()
 {
 	CloseCurrentAudio();
 #ifdef RECORD
-	if (nullptr != _mp3encoder)
+	if (nullptr != _audioencoder)
 	{
-		delete _mp3encoder;
-		_mp3encoder = nullptr;
+		delete _audioencoder;
+		_audioencoder = nullptr;
 	}
 #endif
 }
@@ -156,10 +152,11 @@ bool CAudioRecord::OpenDefaultAudio()
 		return false;
 	}
 #ifdef RECORD
-	if(nullptr != _mp3encoder)
-		_mp3encoder->Init("f:/linsn.mp3", SAMPLE_RATE, CHANNELS_NUM);
-
-	_fwav = fopen("f:/linsn.wav", "wb+");
+	if (nullptr != _audioencoder)
+	{
+		_audioencoder->Mp3Init("f:/linsn.mp3", SAMPLE_RATE, CHANNELS_NUM);
+		_audioencoder->WavInit("f:/linsn.wav", SAMPLE_RATE, CHANNELS_NUM, CHANNELS_NUM * SAMPLE_SIZE * 8);
+	}
 #endif
 
 	return true;
@@ -199,29 +196,10 @@ bool CAudioRecord::CloseCurrentAudio()
 
 	Pa_Terminate();
 #ifdef RECORD
-	if (nullptr != _mp3encoder)
-		_mp3encoder->Finsh();
-
-	/*设置wav文件头*/
-	fseek(_fwav, 0, SEEK_END);
-	CMp3Encoder::WAVE_INFO info;
-	memcpy(info.wHeader.ChunkID, "RIFF", sizeof(char) * 4);
-	memcpy(info.wHeader.Format, "WAVE", sizeof(char) * 4);
-	info.wHeader.ChunkSize = ftell(_fwav) + 44 - 8;
-	memcpy(info.wFmt.Subchunk1ID, "fmt ", sizeof(char) * 4);
-	info.wFmt.AudioFormat = 1;
-	info.wFmt.NumChannels = CHANNELS_NUM;
-	info.wFmt.SampleRate = SAMPLE_RATE;
-	info.wFmt.BitsPerSample = SAMPLE_SIZE * 8;
-	info.wFmt.BlockAlign = info.wFmt.NumChannels * info.wFmt.BitsPerSample / 8;
-	info.wFmt.ByteRate = info.wFmt.SampleRate * info.wFmt.BlockAlign;
-	info.wFmt.Subchunk1Size = 16;
-	memcpy(info.wData.Subchunk2ID, "data ", sizeof(char) * 4);
-	info.wData.Subchunk2Size = ftell(_fwav);
-	fclose(_fwav);
-	_fwav = nullptr;
-
-	_mp3encoder->SetWavHeaderInfo("f:/linsn.wav", info);
+	if (nullptr != _audioencoder) {
+		_audioencoder->Mp3Finsh();
+		_audioencoder->WavFinsh();
+	}
 #endif
 
 	return true;

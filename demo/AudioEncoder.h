@@ -1,12 +1,22 @@
+/**************************************************************************
+*  @Copyright (c) 2024, linsn, All rights reserved.
+
+*  @file     : Mp3Encoder.h
+*  @version  : ver 1.0
+
+*  @author   : linsn
+*  @date     : 2024/01/18 19:42
+*  @brief    : MP3±à½âÂë
+**************************************************************************/
 #pragma once
 #include <string>
 #include "lame.h"
 
-class CMp3Encoder
+class CAudioEncoder
 {
 public:
-	CMp3Encoder();
-	~CMp3Encoder();
+	CAudioEncoder();
+	~CAudioEncoder();
 
 	struct WAVE_INFO
 	{
@@ -38,26 +48,36 @@ public:
 	};
 
 public:
-	/*Encoder basic*/
-	bool Init(const std::string file, unsigned int samplerate, unsigned int channels = 1, unsigned long buffersize = 0);
-	bool Encoder(short* data, unsigned long frameCount);
-	bool Encoder(float* data, unsigned long frameCount);
-	bool Encoder(int* data, unsigned long frameCount);
-	bool Encoder_Interleaved(short* data, unsigned long frameCount);
-	bool Encoder_Interleaved(float* data, unsigned long frameCount);
-	bool Encoder_Interleaved(int* data, unsigned long frameCount);
-	bool Finsh();
+	/*mp3 Encoder basic*/
+	bool Mp3Init(const std::string file, unsigned int samplerate, unsigned int channels = 1, unsigned long buffersize = 0);
+	bool Mp3Encoder(short* data, unsigned long frameCount);
+	bool Mp3Encoder(float* data, unsigned long frameCount);
+	bool Mp3Encoder(int* data, unsigned long frameCount);
+	bool Mp3Encoder_Interleaved(short* data, unsigned long frameCount);
+	bool Mp3Encoder_Interleaved(float* data, unsigned long frameCount);
+	bool Mp3Encoder_Interleaved(int* data, unsigned long frameCount);
+	bool Mp3Finsh();
+	/*wav Encoder basic*/
+	bool WavInit(const std::string file, unsigned int samplerate, unsigned int channels, unsigned int bitdepth = 16);
+	bool WavEncoder(const void* data, unsigned long frameCount);
+	bool WavFinsh();
 	/*method*/
 	bool GetWavHeaderInfo(const std::string wavfile, WAVE_INFO &info);
 	bool SetWavHeaderInfo(const std::string pcmfile, WAVE_INFO info);
+	bool SetWavHeaderInfo(const std::string pcmfile, unsigned int samplerate, unsigned int channels, unsigned int bitdepth = 16);
 	bool WavToMp3(const std::string wavfile, const std::string mp3file);
 	bool Mp3ToWav(const std::string mp3file, const std::string wavfile);
 
 private:
 	lame_global_flags* _flags;
 	unsigned char* _mp3buf;
-	FILE* _fp;
+	FILE* _fmp3;
 	unsigned long  _buffersize;
-	unsigned int _samplerate;
-};
 
+	FILE* _fwav;
+	std::string _pcmfile;
+	WAVE_INFO _wavinfo;
+
+	void FreeMp3cache();
+	void FreeWavcache();
+};

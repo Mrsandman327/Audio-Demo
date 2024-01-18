@@ -153,14 +153,14 @@
   <ItemGroup>
     <ClCompile Include="AudioRecord.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mp3Encoder.cpp" />
+    <ClCompile Include="AudioEncoder.cpp" />
     <ClCompile Include="MSSocket.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AudioParameters.h" />
     <ClInclude Include="AudioRecord.h" />
-    <ClInclude Include="Mp3Encoder.h" />
+    <ClInclude Include="AudioEncoder.h" />
     <ClInclude Include="MSSocket.h" />
     <ClInclude Include="SocketObservable.h" />
     <ClInclude Include="ThreadPool.h" />

@@ -5,7 +5,7 @@
 #include <fstream>
 #include "MSSocket.h"
 #include "AudioRecord.h"
-#include "Mp3Encoder.h"
+#include "AudioEncoder.h"
 
 #define _SERVER		0	
 #define _CLIENT		1   
@@ -14,12 +14,12 @@
 int main(int argc, char *argv[])
 {
 
-#if 01
-	/*Mp3Encoder文件转化示例*/
-	CMp3Encoder Mp3Encoder;
+#if 0
+	/*AudioEncoder文件转化示例*/
+	CAudioEncoder audioencoder;
 
-	Mp3Encoder.WavToMp3("f:/Alarm01.wav", "f:/724.mp3");
-	Mp3Encoder.Mp3ToWav("f:/724.mp3", "f:/terst.wav");
+	audioencoder.WavToMp3("f:/4.wav", "f:/724.mp3");
+	audioencoder.Mp3ToWav("f:/724.mp3", "f:/terst.wav");
 
 	return 0;
 #endif

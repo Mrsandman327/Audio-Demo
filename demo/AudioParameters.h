@@ -1,3 +1,13 @@
+/************************************************************************** 
+    *  @Copyright (c) 2024, linsn, All rights reserved. 
+ 
+    *  @file     : AudioParameters.h 
+    *  @version  : ver 1.0 
+ 
+    *  @author   : linsn 
+    *  @date     : 2024/01/18 19:45 
+    *  @brief    : brief 
+**************************************************************************/  
 #pragma once
 #include "portaudio.h"
 /*²ÉÑùÂÊ*/
