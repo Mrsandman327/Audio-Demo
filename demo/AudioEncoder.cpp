@@ -1,4 +1,5 @@
 #include "AudioEncoder.h"
+#include <sys/stat.h>
 
 CAudioEncoder::CAudioEncoder()
 	: _flags(nullptr)
@@ -385,10 +386,10 @@ bool CAudioEncoder::SetWavHeaderInfo(const std::string pcmfile, WAVE_INFO info)
 	if (int ret = system(cpcmd.c_str()) != 0)
 		return false;
 
+	/*写入文件头*/
 	FILE *fpcm = fopen(pcmfile.c_str(), "wb");
 	if (nullptr == fpcm)
 		return false;
-	/*写入文件头*/
 	fwrite(&info, sizeof(char), sizeof(WAVE_INFO), fpcm);
 
 	/*读取原数据，写回去*/
@@ -419,15 +420,16 @@ bool CAudioEncoder::SetWavHeaderInfo(const std::string pcmfile, WAVE_INFO info)
 
 bool CAudioEncoder::SetWavHeaderInfo(const std::string pcmfile, unsigned int samplerate, unsigned int channels, unsigned int bitdepth)
 {
-	FILE *fwav = fopen(pcmfile.c_str(), "rb");
-	if (nullptr == fwav)
+	/*获取文件信息*/
+	struct stat statbuf;
+	if (0 > stat(pcmfile.c_str(), &statbuf))
 		return false;
 
-	fseek(fwav, 0, SEEK_END);
+	/*创建文件头*/
 	WAVE_INFO info;
 	memcpy(info.wHeader.ChunkID, "RIFF", sizeof(char) * 4);
 	memcpy(info.wHeader.Format, "WAVE", sizeof(char) * 4);
-	info.wHeader.ChunkSize = ftell(fwav) + sizeof(WAVE_INFO) - 8;
+	info.wHeader.ChunkSize = statbuf.st_size + sizeof(WAVE_INFO) - 8;
 	memcpy(info.wFmt.Subchunk1ID, "fmt ", sizeof(char) * 4);
 	info.wFmt.AudioFormat = 1;
 	info.wFmt.NumChannels = channels;
@@ -437,8 +439,7 @@ bool CAudioEncoder::SetWavHeaderInfo(const std::string pcmfile, unsigned int sam
 	info.wFmt.ByteRate = info.wFmt.SampleRate * info.wFmt.BlockAlign;
 	info.wFmt.Subchunk1Size = sizeof(WAVE_INFO::WAVE_FMT) - 8;
 	memcpy(info.wData.Subchunk2ID, "data ", sizeof(char) * 4);
-	info.wData.Subchunk2Size = ftell(fwav);
-	fclose(fwav);
+	info.wData.Subchunk2Size = statbuf.st_size;
 
 	return SetWavHeaderInfo(pcmfile, info);
 }
